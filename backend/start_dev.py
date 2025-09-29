@@ -50,13 +50,17 @@ def start_server():
         print("按 Ctrl+C 停止服务器")
         print("-" * 50)
         
+        # 设置PYTHONPATH
+        env = os.environ.copy()
+        env['PYTHONPATH'] = os.getcwd()
+        
         subprocess.run([
             sys.executable, "-m", "uvicorn",
             "app.main:app",
             "--host", "0.0.0.0",
             "--port", "8000",
             "--reload"
-        ])
+        ], env=env)
     except KeyboardInterrupt:
         print("\n服务器已停止")
     except Exception as e:
