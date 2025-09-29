@@ -2,8 +2,9 @@
 内容实体模型 - Blobs表
 存储文件的唯一内容标识
 """
-from sqlalchemy import Column, String, Integer, DateTime, Text, Index
+from sqlalchemy import Column, String, Integer, DateTime, Text, Index, ForeignKey
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 from app.database import Base
 
 class Blob(Base):

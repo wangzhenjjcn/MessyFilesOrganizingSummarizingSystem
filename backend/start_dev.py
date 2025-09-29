@@ -11,11 +11,11 @@ def check_dependencies():
     try:
         import fastapi
         import sqlalchemy
-        import blake3
-        print("✓ 核心依赖已安装")
+        # import blake3  # 暂时注释
+        print("[OK] 核心依赖已安装")
         return True
     except ImportError as e:
-        print(f"✗ 缺少依赖: {e}")
+        print(f"[ERROR] 缺少依赖: {e}")
         print("请运行: pip install -r requirements.txt")
         return False
 
@@ -23,14 +23,22 @@ def init_database():
     """初始化数据库"""
     try:
         from app.database import engine, Base
-        from app.models import *
+        from app.models.blobs import Blob
+        from app.models.assets import Asset
+        from app.models.tags import Tag, FileTag
+        from app.models.containers import Container, Containment
+        from app.models.saved_views import SavedView
+        from app.models.jobs import Job
+        from app.models.audits import Audit
+        from app.models.entities import Entity
+        from app.models.relations import Relation
         
         print("正在初始化数据库...")
         Base.metadata.create_all(bind=engine)
-        print("✓ 数据库初始化完成")
+        print("[OK] 数据库初始化完成")
         return True
     except Exception as e:
-        print(f"✗ 数据库初始化失败: {e}")
+        print(f"[ERROR] 数据库初始化失败: {e}")
         return False
 
 def start_server():
@@ -52,7 +60,7 @@ def start_server():
     except KeyboardInterrupt:
         print("\n服务器已停止")
     except Exception as e:
-        print(f"✗ 启动服务器失败: {e}")
+        print(f"[ERROR] 启动服务器失败: {e}")
 
 def main():
     """主函数"""

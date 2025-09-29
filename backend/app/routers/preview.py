@@ -5,7 +5,8 @@ from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.models import Blob, Asset
+from app.models.blobs import Blob
+from app.models.assets import Asset
 from app.services.preview_service import PreviewService
 from typing import Optional
 import os

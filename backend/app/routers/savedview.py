@@ -4,7 +4,7 @@ SavedView API路由
 from fastapi import APIRouter, Depends, HTTPException, Query, Body
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.models import SavedView
+from app.models.saved_views import SavedView
 from app.services.savedview_service import SavedViewService
 from typing import List, Optional, Dict, Any
 

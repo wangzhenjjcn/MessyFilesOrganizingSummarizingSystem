@@ -8,7 +8,9 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import logging
 from app.database import SessionLocal
-from app.models import Blob, Asset, Tag, FileTag
+from app.models.blobs import Blob
+from app.models.assets import Asset
+from app.models.tags import Tag, FileTag
 
 logger = logging.getLogger(__name__)
 

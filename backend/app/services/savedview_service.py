@@ -9,7 +9,9 @@ from typing import Dict, List, Optional, Any
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from app.database import SessionLocal
-from app.models import Blob, Asset, SavedView
+from app.models.blobs import Blob
+from app.models.assets import Asset
+from app.models.saved_views import SavedView
 import logging
 
 logger = logging.getLogger(__name__)

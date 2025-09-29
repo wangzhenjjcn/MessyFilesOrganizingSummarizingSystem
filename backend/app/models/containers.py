@@ -39,7 +39,7 @@ class Containment(Base):
     container_id = Column(Integer, ForeignKey("containers.id"), nullable=False, index=True)
     
     # 子文件内容哈希
-    child_content_hash = Column(String(64), ForeignKey("blobs.content_hash"), nullable=False, index=True)
+    child_content_hash = Column(String(64), ForeignKey("blobs.content_hash"), nullable=True, index=True)
     
     # 容器内路径
     path_in_container = Column(String(1024), nullable=False, comment="容器内路径")

@@ -4,7 +4,8 @@
 from fastapi import APIRouter, Depends, HTTPException, Query, Body
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.models import Blob, Asset
+from app.models.blobs import Blob
+from app.models.assets import Asset
 from app.services.container_service import ContainerService
 from typing import List, Optional, Dict, Any
 

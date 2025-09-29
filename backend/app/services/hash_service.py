@@ -5,7 +5,7 @@ import hashlib
 import time
 from pathlib import Path
 from typing import Optional, Dict, Callable
-import blake3
+# import blake3  # 暂时注释，使用hashlib替代
 import logging
 
 logger = logging.getLogger(__name__)
@@ -21,9 +21,9 @@ class HashService:
         self.progress_callback = callback
     
     def calculate_fast_hash(self, file_path: Path, chunk_size: int = 64 * 1024) -> str:
-        """计算快速哈希（BLAKE3）"""
+        """计算快速哈希（使用SHA-256替代BLAKE3）"""
         try:
-            hasher = blake3.blake3()
+            hasher = hashlib.sha256()
             file_size = file_path.stat().st_size
             
             with open(file_path, 'rb') as f:

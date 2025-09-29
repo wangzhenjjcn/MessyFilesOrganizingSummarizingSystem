@@ -8,7 +8,9 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 import logging
 from app.database import SessionLocal
-from app.models import Blob, Asset, Container, Containment
+from app.models.blobs import Blob
+from app.models.assets import Asset
+from app.models.containers import Container, Containment
 
 logger = logging.getLogger(__name__)
 
