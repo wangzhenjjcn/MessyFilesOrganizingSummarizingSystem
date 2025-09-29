@@ -142,6 +142,42 @@ def test_search_service():
         import traceback
         traceback.print_exc()
 
+def test_preview_service():
+    """测试预览服务"""
+    print("测试预览服务...")
+    
+    # 创建测试文件
+    test_dir = create_test_files()
+    
+    try:
+        from app.services.preview_service import PreviewService
+        
+        preview_service = PreviewService()
+        
+        # 测试图片预览
+        test_image = test_dir / "test1.txt"  # 使用文本文件作为测试
+        if test_image.exists():
+            # 测试预览类型检测
+            preview_type = preview_service.get_preview_type(str(test_image))
+            print(f"✓ 预览类型检测: {preview_type}")
+            
+            # 测试预览路径生成
+            preview_path = preview_service.get_preview_path("test_hash", "medium")
+            print(f"✓ 预览路径生成: {preview_path}")
+            
+            # 测试缓存检查
+            is_cached = preview_service.is_preview_cached("test_hash", "medium")
+            print(f"✓ 缓存检查: {is_cached}")
+        
+        print("✓ 预览服务基础功能正常")
+        
+    except Exception as e:
+        print(f"✗ 预览服务测试失败: {e}")
+        import traceback
+        traceback.print_exc()
+    finally:
+        shutil.rmtree(test_dir)
+
 def main():
     """主测试函数"""
     print("开始系统测试...")
@@ -162,6 +198,10 @@ def main():
         
         # 测试搜索服务
         test_search_service()
+        print()
+        
+        # 测试预览服务
+        test_preview_service()
         print()
         
         print("=" * 50)
