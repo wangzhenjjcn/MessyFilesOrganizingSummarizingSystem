@@ -4,7 +4,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
-from app.routers import files, search, preview, admin
+from app.routers import files, search, preview, admin, savedview, container, rules
 
 # 创建数据库表
 Base.metadata.create_all(bind=engine)
@@ -28,6 +28,9 @@ app.add_middleware(
 app.include_router(files.router, prefix="/api/files", tags=["文件管理"])
 app.include_router(search.router, prefix="/api/search", tags=["搜索"])
 app.include_router(preview.router, prefix="/api/preview", tags=["预览"])
+app.include_router(savedview.router, prefix="/api/savedview", tags=["动态集合"])
+app.include_router(container.router, prefix="/api/container", tags=["容器文件"])
+app.include_router(rules.router, prefix="/api/rules", tags=["规则引擎"])
 app.include_router(admin.router, prefix="/api/admin", tags=["管理"])
 
 @app.get("/")
